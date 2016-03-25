@@ -15,9 +15,26 @@ angular.module('starter.controllers', [])
 
 
 })
+.controller('usercenter', function($scope, $ionicModal, $timeout,jmessage) {
 
-.controller('chat', function($scope) {
-	
+	$scope.user={};
+	$scope.$on('$ionicView.enter', function(e) {
+        jmessage.getUserInfo().then(function(response){
+        	$scope.user= response;
+        	console.log(response);
+        });
+		console.log("enter")
+	});
+
+
+
+
 })
+.controller('chat', function($scope) {
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {});
+	JMessagePlugin.register("wxllzf", "123456", function() {
+		alert("success");
+	}, function() {
+		alert("error");
+	})
+});
